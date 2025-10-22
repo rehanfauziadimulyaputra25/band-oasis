@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oasis Story</title>
+  <style>
+    :root{
+      --overlay-dark: rgba(0,0,0,0.72);
+      --overlay-light: rgba(255,255,255,0.7);
+      --text-light: #f3f6fb;
+      --text-dark: #111827;
+      --accent-light: #00bfff;
+      --accent-dark: #0077ff;
+      --card-dark: rgba(0,0,0,0.56);
+      --card-light: rgba(255,255,255,0.92);
+    }
+    [data-theme="light"]{
+      --page-overlay: var(--overlay-light);
+      --text: var(--text-dark);
+      --accent: var(--accent-dark);
+      --card: var(--card-light);
+    }
+    :not([data-theme="light"]){
+      --page-overlay: var(--overlay-dark);
+      --text: var(--text-light);
+      --accent: var(--accent-light);
+      --card: var(--card-dark);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:var(--text); background:var(--page-overlay); transition:background .25s,color .25s}
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background:url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg') center/cover no-repeat;
+      z-index:-2;
+      opacity:0.95;
+    }
+    body::after{
+      content:"";
+      position:fixed;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.6));
+      z-index:-1;
+      pointer-events:none;
+    }
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;
+      background:rgba(0,0,0,0.35);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04);
+      position:sticky;top:0;z-index:30;
+    }
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    header h1{margin:0;font-size:1.15rem;color:var(--accent)}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95}
+    nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+    main.container{max-width:980px;margin:28px auto;padding:22px}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.35)}
+    .card h2{margin-top:0;color:var(--accent);font-size:1.25rem}
+    .card p{line-height:1.75;margin:14px 0;text-align:justify}
+    .controls{display:flex;gap:10px;align-items:center}
+    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04)}
+    .music-btn.playing{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:scale(1.03)}
+    footer{margin-top:18px;color:rgba(255,255,255,0.72);text-align:center;font-size:.92rem}
+    @media (max-width:720px){header{padding:12px}.card{padding:18px}}
+    audio{display:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">OA</div>
+      <div>
+        <h1>Oasis Story</h1>
+        <div style="font-size:.88rem;color:rgba(255,255,255,0.78)">Awal meledaknya band ini</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="pembuatan.html">Pembuatan Band</a>
+        <a href="pembubaran.html">Pembubaran</a>
+        <a href="solo-liam.html">Solo Liam</a>
+        <a href="noel-hfb.html">Noel HFB</a>
+        <a href="reunian-2025.html">Reunian 2025</a>
+      </nav>
+      <button class="theme-btn" id="themeToggle">Ganti Tema</button>
+      <div id="musicBtn" class="music-btn playing">🎵</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="card">
+      <h2>Pembuatan Band Oasis — Dari The Rain ke Legenda Britpop</h2>
+
+      <p>Awal mula Oasis berakar dari band lokal bernama The Rain, dibentuk pada tahun 1991 oleh Paul McGuigan, Paul Arthurs, Tony McCarroll, dan Chris Hutton. Mereka adalah anak-anak muda dari Burnage yang memiliki impian sederhana untuk bermain musik di klub-klub kecil sekitar Manchester. Namun, semuanya berubah saat Liam Gallagher masuk menggantikan Hutton sebagai vokalis. Dengan suaranya yang khas dan karisma alami, band itu mulai mendapatkan perhatian kecil di lingkungan lokal.</p>
+
+      <p>Liam, yang baru saja menemukan minatnya di dunia musik, mengusulkan untuk mengganti nama The Rain menjadi Oasis — terinspirasi dari poster konser Inspiral Carpets di rumahnya, yang menampilkan tempat bernama Oasis Leisure Centre. Nama itu terdengar lebih ambisius dan menggambarkan semangat baru mereka. Di titik ini, band tersebut mulai mengambil bentuk yang lebih serius, meskipun belum memiliki arah musik yang kuat.</p>
+
+      <p>Noel Gallagher yang saat itu masih bekerja sebagai roadie untuk Inspiral Carpets sempat skeptis terhadap band adiknya. Namun setelah menyaksikan mereka tampil secara langsung, ia melihat potensi besar — terutama pada energi panggung Liam. Noel memutuskan untuk bergabung, dengan satu syarat: dia akan menjadi penulis lagu utama dan pengarah kreatif band. Keputusan itu menjadi titik balik dalam sejarah Oasis.</p>
+
+      <p>Begitu Noel bergabung, arah musik Oasis berubah total. Lagu-lagu ciptaannya seperti *Live Forever* dan *Supersonic* mulai memperlihatkan visi yang lebih jelas: musik rock yang besar, optimistis, dan bisa menyentuh berbagai kalangan. Ia menulis lagu yang sederhana namun penuh makna, meniru kesan antemik dari The Beatles dan The Stone Roses, tapi dengan gaya khas Manchester yang lebih kasar dan jujur.</p>
+
+      <p>Band mulai rutin berlatih di ruang kecil di Manchester, menyempurnakan lagu-lagu yang kelak menjadi bagian dari album debut mereka. Mereka tampil di berbagai pub dan klub kecil dengan energi luar biasa. Liam memikat penonton lewat gaya khasnya yang berdiri tegak dan tatapan tajam ke arah kerumunan, sementara Noel memastikan setiap nada terdengar sempurna.</p>
+
+      <p>Mereka akhirnya menarik perhatian Alan McGee, pendiri Creation Records, saat tampil di King Tut’s Wah Wah Hut di Glasgow pada tahun 1993. McGee langsung terkesan dan menawari kontrak rekaman di tempat. Keputusan itu menandai awal karier profesional Oasis. Dari titik ini, perjalanan mereka menuju ketenaran tak lagi bisa dihentikan.</p>
+
+      <p>Oasis mulai merekam album debut mereka di studio Monnow Valley dan kemudian di Sawmills Studio. Proses rekaman tidak mudah — sering kali diselingi konflik antara anggota, terutama antara Liam dan Noel. Namun di balik ketegangan itu, muncul chemistry luar biasa yang menghasilkan lagu-lagu abadi seperti *Rock 'n' Roll Star*, *Slide Away*, dan *Cigarettes & Alcohol*.</p>
+
+      <p>Pada Agustus 1994, Oasis merilis album debut mereka, *Definitely Maybe*. Album ini langsung meledak, menjadi album debut dengan penjualan tercepat di Inggris pada masanya. Lagu-lagu di dalamnya menyuarakan semangat generasi muda yang optimistis namun frustrasi — cerminan sempurna dari kehidupan kelas pekerja Inggris di era 90-an.</p>
+
+      <p>Kesuksesan itu membuat Oasis langsung menjadi sorotan. Mereka muncul di berbagai media, tampil di festival besar, dan mulai disebut sebagai “harapan baru rock Inggris”. Noel menjadi simbol kreativitas dan kepemimpinan, sementara Liam menjadi ikon gaya hidup rock ‘n’ roll yang liar dan tidak bisa ditebak.</p>
+
+      <p>Gaya musik mereka yang menggabungkan distorsi keras, melodi pop yang kuat, dan lirik-lirik sederhana tapi menggugah menjadikan Oasis unik di tengah arus musik grunge yang mendominasi dunia saat itu. Mereka membawa kembali semangat kebanggaan Inggris, memicu gelombang Britpop yang akan mendefinisikan dekade itu.</p>
+
+      <p>Selain musiknya, citra Oasis sebagai band yang “jujur dan apa adanya” membuat mereka dicintai. Mereka tidak berusaha tampak sempurna — mereka adalah anak jalanan Manchester yang kini berdiri di atas panggung besar, membawa cerita nyata di setiap lagu. Hal inilah yang membuat koneksi mereka dengan penggemar begitu kuat.</p>
+
+      <p>Pada tahun 1995, mereka mulai mengerjakan album kedua, *(What’s the Story) Morning Glory?*, yang memperkuat posisi mereka di dunia internasional. Namun semua itu berakar dari masa-masa awal pembentukan band, ketika semangat, mimpi, dan tekad untuk keluar dari Burnage masih menjadi sumber energi utama.</p>
+
+      <p>Pembuatan Oasis bukan hanya soal musik, tapi juga tentang persaudaraan, konflik, dan keyakinan. Noel menulis lagu-lagu penuh makna, Liam menyuarakannya dengan api, dan anggota lain menopang dengan ketulusan. Bersama, mereka menciptakan sesuatu yang melampaui batas geografis dan generasi.</p>
+
+      <p>Kekuatan terbesar mereka justru lahir dari ketidaksempurnaan. Setiap perbedaan dalam band itu memunculkan dinamika kreatif yang membuat lagu-lagu mereka terasa hidup dan manusiawi. Setiap nada, setiap kata, membawa kisah perjuangan dari jalanan Burnage hingga ke panggung Wembley.</p>
+
+      <p>Dalam setiap wawancara awal, Noel selalu mengatakan bahwa ia hanya ingin menulis lagu yang bisa bertahan lama. Ia tak pernah membayangkan bahwa Oasis akan menjadi salah satu band paling berpengaruh di dunia. Namun, dari awal pembentukan band hingga puncak kejayaan, mimpi sederhana itu menjadi kenyataan besar.</p>
+
+      <p>Liam pun tumbuh dari remaja pemberontak menjadi simbol generasi muda Inggris. Dengan vokalnya yang khas dan sikap tanpa kompromi, ia membawa lagu-lagu abangnya hidup di atas panggung. Oasis bukan sekadar band — mereka adalah cerita dua bersaudara yang saling mendorong dan saling melawan, tapi bersama menulis sejarah.</p>
+
+      <p>Seiring waktu, Oasis menjadi inspirasi bagi banyak band muda di Inggris dan luar negeri. Mereka membuktikan bahwa asal-usul sederhana bukan halangan untuk menciptakan sesuatu yang besar. Pembuatan band ini menjadi bukti kekuatan visi, kerja keras, dan sedikit keberanian untuk bermimpi besar.</p>
+
+      <p>Dari ruang latihan sederhana di Burnage hingga label besar di London, perjalanan pembentukan Oasis adalah kisah yang menggambarkan semangat kelas pekerja Inggris — keras kepala, penuh tekad, tapi selalu jujur. Dan itulah yang membuat mereka tetap dikenang hingga hari ini.</p>
+
+      <p>Setiap band punya asal-usul, tapi sedikit yang bisa sekuat dan seotentik Oasis. Dari pertemuan sederhana hingga perjanjian besar, dari mimpi kecil hingga ketenaran dunia — semuanya dimulai dari satu hal: dua bersaudara yang mencintai musik, dan tak mau berhenti sampai seluruh dunia mendengarnya.</p>
+
+      <p>Pembuatan Oasis adalah bukti bahwa musik yang tulus akan menemukan jalannya sendiri. Dari The Rain, lahirlah Oasis. Dan dari Oasis, lahir generasi baru pemimpi yang percaya bahwa asal dari Burnage pun bisa menulis lagu yang mengguncang dunia.</p>
+      
+       <footer>
+    <p>© 2025 Oasis Fan Project | Designed by Rehan Fauzi Adimulya Putra 9D</p>
+    
+      <footer>
+        <p>Halaman ini adalah bagian dari seri lengkap tentang Oasis — lanjutkan ke bab berikutnya untuk kisah pembubaran band.</p>
+      </footer>
+    </article>
+  </main>
+
+  <audio id="backsound" src="434414d67fa3.mp3" loop preload="metadata"></audio>
+
+  <script>
+    (function(){
+      const tBtn=document.getElementById('themeToggle');
+      const saved=localStorage.getItem('oasis-theme')||'dark';
+      if(saved==='light')document.documentElement.setAttribute('data-theme','light');
+      tBtn.addEventListener('click',()=>{
+        const isLight=document.documentElement.getAttribute('data-theme')==='light';
+        if(isLight){document.documentElement.removeAttribute('data-theme');localStorage.setItem('oasis-theme','dark')}
+        else{document.documentElement.setAttribute('data-theme','light');localStorage.setItem('oasis-theme','light')}
+      });
+    })();
+
+    (function(){
+      const audio=document.getElementById('backsound');
+      const btn=document.getElementById('musicBtn');
+      let playing=true;
+      audio.volume=0.38;
+      const tryPlay=()=>{audio.play().then(()=>{playing=true;btn.classList.add('playing')}).catch(()=>{playing=false;btn.classList.remove('playing')});document.removeEventListener('click',tryPlay)};
+      document.addEventListener('click',tryPlay);
+      btn.addEventListener('click',()=>{if(playing){audio.pause();btn.classList.remove('playing')}else{audio.play().catch(()=>{});btn.classList.add('playing')}playing=!playing});
+    })();
+  </script>
+</body>
+</html>

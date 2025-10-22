@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oasis Story</title>
+  <style>
+    :root{
+      --overlay-dark: rgba(0,0,0,0.72);
+      --overlay-light: rgba(255,255,255,0.7);
+      --text-light: #f3f6fb;
+      --text-dark: #111827;
+      --accent-light: #00bfff;
+      --accent-dark: #0077ff;
+      --card-dark: rgba(0,0,0,0.56);
+      --card-light: rgba(255,255,255,0.92);
+    }
+    [data-theme="light"]{
+      --page-overlay: var(--overlay-light);
+      --text: var(--text-dark);
+      --accent: var(--accent-dark);
+      --card: var(--card-light);
+    }
+    :not([data-theme="light"]){
+      --page-overlay: var(--overlay-dark);
+      --text: var(--text-light);
+      --accent: var(--accent-light);
+      --card: var(--card-dark);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:var(--text); background:var(--page-overlay); transition:background .25s,color .25s}
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background:url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg') center/cover no-repeat;
+      z-index:-2;
+      opacity:0.95;
+    }
+    body::after{
+      content:"";
+      position:fixed;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.6));
+      z-index:-1;
+      pointer-events:none;
+    }
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;
+      background:rgba(0,0,0,0.35);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04);
+      position:sticky;top:0;z-index:30;
+    }
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    header h1{margin:0;font-size:1.15rem;color:var(--accent)}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95}
+    nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+    main.container{max-width:980px;margin:28px auto;padding:22px}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.35)}
+    .card h2{margin-top:0;color:var(--accent);font-size:1.25rem}
+    .card p{line-height:1.75;margin:14px 0;text-align:justify}
+    .controls{display:flex;gap:10px;align-items:center}
+    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04)}
+    .music-btn.playing{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:scale(1.03)}
+    footer{margin-top:18px;color:rgba(255,255,255,0.72);text-align:center;font-size:.92rem}
+    @media (max-width:720px){header{padding:12px}.card{padding:18px}}
+    audio{display:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">OA</div>
+      <div>
+        <h1>Oasis Story</h1>
+        <div style="font-size:.88rem;color:rgba(255,255,255,0.78)">Akhir dari era Britpop terbesar di dunia</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="pembuatan.html">Pembuatan Band</a>
+        <a href="pembubaran.html">Pembubaran</a>
+        <a href="solo-liam.html">Solo Liam</a>
+        <a href="noel-hfb.html">Noel HFB</a>
+        <a href="reunian-2025.html">Reunian 2025</a>
+      </nav>
+      <button class="theme-btn" id="themeToggle">Ganti Tema</button>
+      <div id="musicBtn" class="music-btn playing">🎵</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="card">
+      <h2>Pembubaran Band Oasis — Saat Persaudaraan Pecah di Panggung Dunia</h2>
+
+      <p>Oasis bukan hanya band, melainkan simbol generasi. Namun di balik kejayaan mereka, tersimpan konflik yang perlahan menggerogoti fondasi band tersebut. Perseteruan antara Noel dan Liam Gallagher yang sudah lama terpendam akhirnya mencapai titik didih pada tahun 2009, memaksa band ini mengucapkan selamat tinggal kepada dunia.</p>
+
+      <p>Selama bertahun-tahun, hubungan dua bersaudara ini diwarnai cinta dan benci. Mereka saling mendukung di satu sisi, tapi juga sering saling menghancurkan di sisi lain. Seiring bertambahnya popularitas Oasis, tekanan media, ekspektasi penggemar, dan perbedaan visi musik membuat hubungan mereka semakin rapuh.</p>
+
+      <p>Konflik antara Liam yang impulsif dan Noel yang perfeksionis sering meledak di belakang panggung. Meski publik melihat mereka sebagai duet yang sempurna, kenyataannya ketegangan itu selalu hadir setiap hari. Mereka sering beradu argumen, bahkan saat proses rekaman atau tur dunia berlangsung.</p>
+
+      <p>Ketegangan makin memuncak pada 28 Agustus 2009 di Paris, saat Oasis dijadwalkan tampil di festival Rock en Seine. Hanya beberapa menit sebelum tampil, perdebatan hebat pecah di belakang panggung. Liam dilaporkan melempar gitar ke arah Noel, dan momen itu menjadi batas kesabaran sang kakak. Noel langsung memutuskan keluar dari band.</p>
+
+      <p>Keesokan harinya, Noel mengumumkan perpisahan resmi Oasis melalui situs web band. Dalam pernyataannya, ia menulis bahwa ia tidak bisa lagi bekerja dengan Liam. Kalimat sederhana itu menandai berakhirnya salah satu kisah terbesar dalam sejarah musik modern. Dunia pun terkejut, seolah kehilangan ikon yang sudah menjadi bagian dari kehidupan mereka.</p>
+
+      <p>Pembubaran Oasis bukan sekadar bubarnya band, tapi pecahnya simbol persaudaraan, mimpi, dan perjuangan. Noel melanjutkan hidup dengan proyek barunya, sementara Liam mencoba mempertahankan warisan Oasis lewat band *Beady Eye*. Namun, bayangan masa lalu terus menghantui keduanya.</p>
+
+      <p>Bagi penggemar, perpisahan ini sulit diterima. Banyak yang berharap Noel dan Liam bisa berdamai dan kembali menciptakan keajaiban seperti dulu. Namun bertahun-tahun berlalu tanpa tanda-tanda rekonsiliasi, hanya sindiran dan ejekan yang dilempar melalui media dan Twitter.</p>
+
+      <p>Meski mereka berpisah, warisan Oasis tetap abadi. Lagu-lagu seperti *Wonderwall*, *Don’t Look Back in Anger*, dan *Champagne Supernova* terus diputar dan dinyanyikan di seluruh dunia. Band ini mungkin bubar, tapi semangatnya tidak pernah mati.</p>
+
+      <p>Pembubaran Oasis menandai berakhirnya era Britpop, namun juga membuka babak baru dalam karier masing-masing Gallagher bersaudara. Dari puing-puing perpisahan itu, lahirlah dua jalur musik baru: satu di bawah nama Liam, satu lagi lewat *Noel Gallagher’s High Flying Birds*.</p>
+
+      <p>Hingga kini, kisah pembubaran Oasis tetap menjadi salah satu momen paling emosional dalam sejarah musik. Itu bukan sekadar perpisahan band, tapi simbol betapa tipis batas antara cinta dan kebencian — bahkan di antara dua saudara yang menciptakan musik untuk menyatukan dunia.</p>
+
+      <footer>
+        <p>© 2025 Oasis Fan Project | Designed by Rehan Fauzi Adimulya Putra 9D</p>
+        <p>Halaman ini adalah bagian dari seri lengkap tentang Oasis — lanjutkan ke bab berikutnya untuk kisah solo karier Liam Gallagher.</p>
+      </footer>
+    </article>
+  </main>
+
+  <audio id="backsound" src="434414d67fa3.mp3" loop preload="metadata"></audio>
+
+  <script>
+    (function(){
+      const tBtn=document.getElementById('themeToggle');
+      const saved=localStorage.getItem('oasis-theme')||'dark';
+      if(saved==='light')document.documentElement.setAttribute('data-theme','light');
+      tBtn.addEventListener('click',()=>{
+        const isLight=document.documentElement.getAttribute('data-theme')==='light';
+        if(isLight){document.documentElement.removeAttribute('data-theme');localStorage.setItem('oasis-theme','dark')}
+        else{document.documentElement.setAttribute('data-theme','light');localStorage.setItem('oasis-theme','light')}
+      });
+    })();
+
+    (function(){
+      const audio=document.getElementById('backsound');
+      const btn=document.getElementById('musicBtn');
+      let playing=true;
+      audio.volume=0.38;
+      const tryPlay=()=>{audio.play().then(()=>{playing=true;btn.classList.add('playing')}).catch(()=>{playing=false;btn.classList.remove('playing')});document.removeEventListener('click',tryPlay)};
+      document.addEventListener('click',tryPlay);
+      btn.addEventListener('click',()=>{if(playing){audio.pause();btn.classList.remove('playing')}else{audio.play().catch(()=>{});btn.classList.add('playing')}playing=!playing});
+    })();
+  </script>
+</body>
+</html>
