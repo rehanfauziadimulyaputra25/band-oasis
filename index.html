@@ -86,7 +86,7 @@
       <div class="logo">OA</div>
       <div>
         <h1>Oasis Story</h1>
-        <div style="font-size:.88rem;color:#000">Blog Yang Berisi Sejarah Band Oasis</div>
+        <div style="font-size:.88rem;color:#000">Blog Yang Berisi Sejarah and Oasis</div>
       </div>
     </div>
 
@@ -138,8 +138,7 @@
     </article>
   </main>
 
-  <!-- dua lagu backsound -->
-  <audio id="backsound" src="dont look back in anger.mp3" loop preload="metadata"></audio>
+   <audio id="backsound" src="dont look back in anger.mp3" loop preload="metadata"></audio>
 
   <script>
     // === Tema Gelap / Terang ===
@@ -161,47 +160,31 @@
       });
     })();
 
-    // === Backsound Otomatis Ganti Lagu ===
+    // Backsound control (1 lagu)
     (function(){
-      const songs = [
-        document.getElementById('song1'),
-        document.getElementById('song2')
-      ];
+      const audio = document.getElementById('backsound');
       const btn = document.getElementById('musicBtn');
-      let current = 0;
-      let playing = true;
+      let playing = false;
+      audio.volume = 0.4;
 
-      songs.forEach(s => s.volume = 0.38);
-
-      function playCurrent(){
-        songs[current].play().catch(()=>{});
-        btn.classList.add('playing');
-      }
-
-      // ganti ke lagu berikutnya setelah satu selesai
-      songs.forEach((s,i)=>{
-        s.addEventListener('ended', ()=>{
-          s.pause();
-          s.currentTime = 0;
-          current = (i+1) % songs.length;
-          playCurrent();
+      const tryPlay = () => {
+        audio.play().then(()=>{
+          playing = true;
+          btn.classList.add('playing');
+        }).catch(()=>{
+          playing = false;
+          btn.classList.remove('playing');
         });
-      });
-
-      // auto-play setelah klik pertama di halaman
-      const startPlay = ()=>{
-        playCurrent();
-        document.removeEventListener('click', startPlay);
+        document.removeEventListener('click', tryPlay);
       };
-      document.addEventListener('click', startPlay);
+      document.addEventListener('click', tryPlay);
 
-      // tombol play/pause manual
       btn.addEventListener('click', ()=>{
         if(playing){
-          songs[current].pause();
+          audio.pause();
           btn.classList.remove('playing');
         } else {
-          songs[current].play().catch(()=>{});
+          audio.play().catch(()=>{});
           btn.classList.add('playing');
         }
         playing = !playing;

@@ -128,7 +128,7 @@
     </article>
   </main>
 
-  <audio id="backsound" src="cast no shadow.mp3" loop preload="metadata"></audio
+  <audio id="backsound" src="cast no shadow.mp3" loop preload="metadata"></audio>
 
   <script>
     // Theme toggle
@@ -150,30 +150,31 @@
       });
     })();
 
-    // Music auto-loop dua lagu
+   // Backsound control (1 lagu)
     (function(){
+      const audio = document.getElementById('backsound');
       const btn = document.getElementById('musicBtn');
-      const s1 = document.getElementById('song1');
-      const s2 = document.getElementById('song2');
       let playing = false;
-
-      s1.volume = 0.35;
-      s2.volume = 0.35;
+      audio.volume = 0.4;
 
       const tryPlay = () => {
-        s1.play().then(()=>{ playing = true; btn.classList.add('playing'); })
-        .catch(()=>{ playing=false; btn.classList.remove('playing'); });
+        audio.play().then(()=>{
+          playing = true;
+          btn.classList.add('playing');
+        }).catch(()=>{
+          playing = false;
+          btn.classList.remove('playing');
+        });
         document.removeEventListener('click', tryPlay);
       };
       document.addEventListener('click', tryPlay);
 
-      s1.addEventListener('ended', ()=>{ s2.currentTime=0; s2.play(); });
-      s2.addEventListener('ended', ()=>{ s1.currentTime=0; s1.play(); });
-
       btn.addEventListener('click', ()=>{
-        if(playing){ s1.pause(); s2.pause(); btn.classList.remove('playing'); }
-        else {
-          (s1.paused && s2.paused ? s1 : (s1.paused ? s2 : s1)).play().catch(()=>{});
+        if(playing){
+          audio.pause();
+          btn.classList.remove('playing');
+        } else {
+          audio.play().catch(()=>{});
           btn.classList.add('playing');
         }
         playing = !playing;
