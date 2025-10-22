@@ -3,71 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Oasis Story</title>
+  <title>Solo Liam Gallagher</title>
+  
   <style>
     :root{
-      --overlay-dark: rgba(0,0,0,0.72);
-      --overlay-light: rgba(255,255,255,0.7);
       --text-light: #f3f6fb;
       --text-dark: #111827;
       --accent-light: #00bfff;
       --accent-dark: #0077ff;
       --card-dark: rgba(0,0,0,0.56);
-      --card-light: rgba(255,255,255,0.92);
+      --card-light: rgba(255,255,255,0.9);
+      --bg-img: url('liam gallagher.jpg');
     }
+
     [data-theme="light"]{
-      --page-overlay: var(--overlay-light);
       --text: var(--text-dark);
       --accent: var(--accent-dark);
       --card: var(--card-light);
     }
+
     :not([data-theme="light"]){
-      --page-overlay: var(--overlay-dark);
       --text: var(--text-light);
       --accent: var(--accent-light);
       --card: var(--card-dark);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:var(--text); background:var(--page-overlay); transition:background .25s,color .25s}
-
-    body::before{
-      content:"";
-      position:fixed;inset:0;
-      background: url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg') center/cover no-repeat;
-      z-index:-2;
-      opacity:0.95;
-    }
-    body::after{
-      content:"";
-      position:fixed;inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.6));
-      z-index:-1;
-      pointer-events:none;
+    html,body{
+      height:100%;margin:0;
+      font-family:Inter,system-ui,Roboto,Arial;
+      color:var(--text);
+      background:var(--bg-img) center/cover no-repeat fixed;
+      transition:color .25s, background .25s;
     }
 
     header{
       display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;
-      background:rgba(0,0,0,0.35);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(0,0,0,0.1);
       position:sticky;top:0;z-index:30;
+      transition:background .35s;
     }
+
+    [data-theme="dark"] header{
+      background:rgba(0,0,0,0.55);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
     .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    .logo{width:56px;height:56px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
     header h1{margin:0;font-size:1.15rem;color:var(--accent)}
     nav{display:flex;gap:10px;flex-wrap:wrap}
-    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95}
-    nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95;transition:background .3s,transform .3s}
+    nav a:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+    [data-theme="light"] nav a:hover{background:rgba(0,0,0,0.1)}
 
     main.container{max-width:980px;margin:28px auto;padding:22px}
-    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.35)}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.25);transition:background .35s,color .35s}
     .card h2{margin-top:0;color:var(--accent);font-size:1.25rem}
     .card p{line-height:1.75;margin:14px 0;text-align:justify}
 
     .controls{display:flex;gap:10px;align-items:center}
-    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
-    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04)}
+    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .3s,opacity .3s}
+    .theme-btn:hover{transform:scale(1.05);opacity:.85}
+    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.3);transition:all .3s}
     .music-btn.playing{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:scale(1.03)}
-    footer{margin-top:18px;color:rgba(255,255,255,0.72);text-align:center;font-size:.92rem}
+
+    footer{margin-top:18px;color:#000;text-align:center;font-size:.92rem}
+    [data-theme="dark"] footer{color:#fff}
 
     @media (max-width:720px){
       header{padding:12px}
@@ -82,87 +85,84 @@
     <div class="brand">
       <div class="logo">OA</div>
       <div>
-        <h1>Oasis Story</h1>
-        <div style="font-size:.88rem;color:rgba(255,255,255,0.78)">Kisah Liam setelah perpisahan</div>
+        <h1>Solo Liam Gallagher</h1>
+        <div style="font-size:.88rem;color:#000">Perjalanan Karier Solo Liam Setelah Oasis</div>
       </div>
     </div>
 
-    <div class="controls" aria-hidden="false">
-      <nav aria-label="Halaman">
+    <div class="controls">
+      <nav>
         <a href="index.html">Beranda</a>
         <a href="pembuatan.html">Pembuatan Band</a>
         <a href="pembubaran.html">Pembubaran</a>
-        <a href="solo-liam.html">Solo Liam</a>
         <a href="noel-hfb.html">Noel HFB</a>
+        <a href="solo-liam.html">Solo Liam</a>
         <a href="reunian-2025.html">Reunian 2025</a>
       </nav>
 
-      <button class="theme-btn" id="themeToggle" title="Ganti tema">Ganti Tema</button>
-      <div id="musicBtn" class="music-btn playing" title="Pause / Play musik">🎵</div>
+      <button class="theme-btn" id="themeToggle">Ganti Tema</button>
+      <div id="musicBtn" class="music-btn playing">🎵</div>
     </div>
   </header>
 
   <main class="container">
     <article class="card" id="content">
-      <h2>Solo Karier Liam Gallagher — Dari Frontman ke Legenda</h2>
+      <h2>Perjalanan Solo Liam Gallagher</h2>
 
-      <p>Setelah pembubaran Oasis tahun 2009, Liam Gallagher tidak membutuhkan waktu lama untuk kembali ke dunia musik. Dengan semangat yang masih membara, ia membentuk band baru bernama *Beady Eye* bersama beberapa mantan anggota Oasis. Walau sempat merilis dua album, band ini tidak mencapai kesuksesan besar seperti Oasis, dan akhirnya bubar pada tahun 2014. Namun, Liam tidak menyerah begitu saja.</p>
+      <p>Setelah pembubaran Oasis pada 2009, Liam Gallagher tidak berhenti bermusik. Ia membentuk band baru bernama <strong>Beady Eye</strong> bersama beberapa mantan anggota Oasis seperti Gem Archer dan Andy Bell. Namun, Beady Eye hanya bertahan hingga 2014 sebelum akhirnya bubar karena kurangnya respon besar dari publik.</p>
 
-      <p>Tahun 2017 menjadi titik kebangkitan baru bagi Liam Gallagher. Ia merilis album solo pertamanya, *As You Were*, yang langsung mendapat sambutan luar biasa baik dari kritikus maupun penggemar. Lagu-lagu seperti “Wall of Glass” dan “For What It’s Worth” menampilkan sisi Liam yang lebih matang namun tetap mempertahankan gaya vokal khasnya yang penuh karakter.</p>
+      <p>Pada 2017, Liam memulai karier solonya secara penuh dengan merilis album debut <strong>As You Were</strong>. Album ini disambut hangat oleh penggemar dan kritikus, bahkan debut di posisi puncak tangga album Inggris. Lagu-lagu seperti “Wall of Glass” dan “For What It’s Worth” menunjukkan bahwa Liam masih memiliki pesona rock ‘n’ roll yang kuat dan vokal khas yang meledak-ledak.</p>
 
-      <p>Liam kemudian melanjutkan kesuksesan tersebut dengan album keduanya, *Why Me? Why Not.* (2019). Dalam album ini, ia menampilkan keseimbangan antara energi rock britpop dan refleksi pribadi. Beberapa lagu seperti “Once” dan “Now That I’ve Found You” menunjukkan sisi lembut dan introspektif yang jarang terlihat saat ia masih bersama Oasis.</p>
+      <p>Gaya musik Liam di era solo tetap mempertahankan elemen Britpop klasik, namun dengan sentuhan produksi modern. Ia juga menulis sebagian lagu dengan bantuan penulis lagu profesional, menghasilkan karya yang lebih matang dibanding masa Oasis. Secara lirik, banyak lagu yang mencerminkan introspeksi pribadi, hubungan masa lalu, dan perenungan hidupnya setelah ketenaran.</p>
 
-      <p>Gaya khas Liam dalam berpakaian dan sikapnya yang “no filter” di media sosial membuatnya tetap menjadi ikon budaya Inggris. Ia berhasil mempertahankan karisma sebagai bintang rock sejati di era modern, tanpa kehilangan identitas aslinya sebagai musisi dari jalanan Manchester.</p>
+      <p>Album kedua Liam, <strong>Why Me? Why Not.</strong> (2019), memperkuat posisinya sebagai ikon rock Inggris yang tetap relevan. Lagu seperti “Once” dan “Shockwave” menampilkan semangat dan energi khasnya, sementara sisi lembutnya muncul dalam lagu-lagu balada. Ia membuktikan bahwa meskipun sering dikaitkan dengan konflik masa lalu bersama Noel, ia mampu berdiri sendiri sebagai musisi sejati.</p>
 
-      <p>Pada tahun 2022, Liam merilis album ketiganya bertajuk *C’mon You Know*. Album ini memperlihatkan perkembangan musikal dan kedewasaan dalam penulisan lagu, namun tetap penuh semangat rock yang menggema di stadion. Lagu-lagu seperti “Everything’s Electric” menunjukkan kemampuannya berkolaborasi dengan musisi generasi baru, termasuk Dave Grohl dari Foo Fighters.</p>
+      <p>Selain musik, Liam juga dikenal karena kepribadiannya yang unik dan blak-blakan. Ia sering membuat komentar jenaka di media sosial dan tetap menjadi sosok yang dicintai penggemar karena keasliannya. Dalam banyak wawancara, ia menyebut bahwa meski masa lalu dengan Oasis penuh drama, ia tetap bangga akan warisan band tersebut.</p>
 
-      <p>Liam juga kembali tampil di panggung besar seperti Knebworth pada tahun 2022 — tempat yang sama di mana Oasis mencetak sejarah tahun 1996. Konser ini menjadi simbol kemenangan pribadi dan bukti bahwa karier Liam belum berakhir, bahkan semakin kuat.</p>
-
-      <p>Kesuksesan solo Liam Gallagher tidak hanya membuktikan bahwa ia lebih dari sekadar mantan vokalis Oasis, tetapi juga seorang seniman dengan gaya dan pesan yang tetap relevan. Ia membawa semangat britpop ke era baru sambil mempertahankan aura rock klasik yang langka di zaman sekarang.</p>
-
-      <p>Dengan keteguhan dan gaya khasnya, Liam terus menjadi figur penting dalam musik Inggris modern. Ia mungkin tidak lagi berbagi panggung dengan Noel, tetapi suaranya tetap menjadi suara generasi yang tumbuh dengan lagu-lagu Oasis — lantang, jujur, dan abadi.</p>
+      <p>Sampai hari ini, Liam Gallagher terus aktif tampil di berbagai festival besar dan tur dunia. Ia menjadi simbol keteguhan dan semangat musik rock Inggris yang tak lekang oleh waktu. Melalui suaranya yang masih sekuat dulu, ia membuktikan bahwa legenda Oasis tetap hidup — dengan caranya sendiri.</p>
 
       <footer>
-        <p>© 2025 Oasis Fan Project | Designed by Rehan Fauzi Adimulya Putra 9D</p>
-      </footer>
-
-      <footer>
-        <p>Halaman ini adalah bagian dari seri lengkap tentang Oasis — gunakan menu di atas untuk melanjutkan ke bab selanjutnya.</p>
+        <p>© REHAN FAUZI ADIMULYA PUTRA 9D</p>
+        <p>Halaman ini membahas perjalanan solo Liam Gallagher setelah era Oasis.</p>
       </footer>
     </article>
   </main>
 
-  <audio id="backsound" src="434414d67fa3.mp3" loop preload="metadata"></audio>
+  <audio id="backsound" src="for what is worth.mp3" loop preload="metadata"></audio>
 
   <script>
+    // Theme toggle + persistence
     (function(){
       const tBtn = document.getElementById('themeToggle');
-      const saved = localStorage.getItem('oasis-theme') || 'dark';
-      if(saved === 'light') document.documentElement.setAttribute('data-theme','light');
+      const saved = localStorage.getItem('oasis-theme') || 'light';
+      if(saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
       else document.documentElement.removeAttribute('data-theme');
 
       tBtn.addEventListener('click', ()=>{
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        if(isLight){
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){
           document.documentElement.removeAttribute('data-theme');
-          localStorage.setItem('oasis-theme','dark');
-        } else {
-          document.documentElement.setAttribute('data-theme','light');
           localStorage.setItem('oasis-theme','light');
+        } else {
+          document.documentElement.setAttribute('data-theme','dark');
+          localStorage.setItem('oasis-theme','dark');
         }
       });
     })();
 
+    // Backsound control
     (function(){
       const audio = document.getElementById('backsound');
       const btn = document.getElementById('musicBtn');
       let playing = true;
-      audio.volume = 0.38;
+      audio.volume = 0.4;
       const tryPlay = () => {
-        audio.play().then(()=>{ playing = true; btn.classList.add('playing') }).catch(()=>{ playing=false; btn.classList.remove('playing') });
+        audio.play().then(()=>{ playing = true; btn.classList.add('playing'); })
+        .catch(()=>{ playing=false; btn.classList.remove('playing'); });
         document.removeEventListener('click', tryPlay);
       };
       document.addEventListener('click', tryPlay);
+
       btn.addEventListener('click', ()=>{
         if(playing){ audio.pause(); btn.classList.remove('playing'); }
         else { audio.play().catch(()=>{}); btn.classList.add('playing'); }

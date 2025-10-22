@@ -3,71 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Noel Gallagher's High Flying Birds — Oasis Story</title>
+  <title>Noel Gallagher's High Flying Birds</title>
+  
   <style>
     :root{
-      --overlay-dark: rgba(0,0,0,0.72);
-      --overlay-light: rgba(255,255,255,0.7);
       --text-light: #f3f6fb;
       --text-dark: #111827;
       --accent-light: #00bfff;
       --accent-dark: #0077ff;
       --card-dark: rgba(0,0,0,0.56);
-      --card-light: rgba(255,255,255,0.92);
+      --card-light: rgba(255,255,255,0.9);
+      --bg-img: url('noel gallagher hfb.jpg');
     }
+
     [data-theme="light"]{
-      --page-overlay: var(--overlay-light);
       --text: var(--text-dark);
       --accent: var(--accent-dark);
       --card: var(--card-light);
     }
+
     :not([data-theme="light"]){
-      --page-overlay: var(--overlay-dark);
       --text: var(--text-light);
       --accent: var(--accent-light);
       --card: var(--card-dark);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:var(--text); background:var(--page-overlay); transition:background .25s,color .25s}
-
-    body::before{
-      content:"";
-      position:fixed;inset:0;
-      background: url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg') center/cover no-repeat;
-      z-index:-2;
-      opacity:0.95;
-    }
-    body::after{
-      content:"";
-      position:fixed;inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.6));
-      z-index:-1;
-      pointer-events:none;
+    html,body{
+      height:100%;margin:0;
+      font-family:Inter,system-ui,Roboto,Arial;
+      color:var(--text);
+      background:var(--bg-img) center/cover no-repeat fixed;
+      transition:color .25s, background .25s;
     }
 
     header{
       display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;
-      background:rgba(0,0,0,0.35);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(0,0,0,0.1);
       position:sticky;top:0;z-index:30;
+      transition:background .35s;
     }
+
+    [data-theme="dark"] header{
+      background:rgba(0,0,0,0.55);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
     .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    .logo{width:56px;height:56px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
     header h1{margin:0;font-size:1.15rem;color:var(--accent)}
     nav{display:flex;gap:10px;flex-wrap:wrap}
-    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95}
-    nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95;transition:background .3s,transform .3s}
+    nav a:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+    [data-theme="light"] nav a:hover{background:rgba(0,0,0,0.1)}
 
     main.container{max-width:980px;margin:28px auto;padding:22px}
-    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.35)}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.25);transition:background .35s,color .35s}
     .card h2{margin-top:0;color:var(--accent);font-size:1.25rem}
     .card p{line-height:1.75;margin:14px 0;text-align:justify}
 
     .controls{display:flex;gap:10px;align-items:center}
-    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
-    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04)}
+    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .3s,opacity .3s}
+    .theme-btn:hover{transform:scale(1.05);opacity:.85}
+    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.3);transition:all .3s}
     .music-btn.playing{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:scale(1.03)}
-    footer{margin-top:18px;color:rgba(255,255,255,0.72);text-align:center;font-size:.92rem}
+
+    footer{margin-top:18px;color:#000;text-align:center;font-size:.92rem}
+    [data-theme="dark"] footer{color:#fff}
 
     @media (max-width:720px){
       header{padding:12px}
@@ -82,91 +85,82 @@
     <div class="brand">
       <div class="logo">OA</div>
       <div>
-        <h1>Oasis Story</h1>
-        <div style="font-size:.88rem;color:rgba(255,255,255,0.78)">Kisah Noel setelah perpisahan</div>
+        <h1>Noel Gallagher's High Flying Birds</h1>
+        <div style="font-size:.88rem;color:#000">Perjalanan Karier Noel Setelah Oasis</div>
       </div>
     </div>
 
-    <div class="controls" aria-hidden="false">
-      <nav aria-label="Halaman">
+    <div class="controls">
+      <nav>
         <a href="index.html">Beranda</a>
         <a href="pembuatan.html">Pembuatan Band</a>
         <a href="pembubaran.html">Pembubaran</a>
-        <a href="solo-liam.html">Solo Liam</a>
         <a href="noel-hfb.html">Noel HFB</a>
+        <a href="solo-liam.html">Solo Liam</a>
         <a href="reunian-2025.html">Reunian 2025</a>
       </nav>
 
-      <button class="theme-btn" id="themeToggle" title="Ganti tema">Ganti Tema</button>
-      <div id="musicBtn" class="music-btn playing" title="Pause / Play musik">🎵</div>
+      <button class="theme-btn" id="themeToggle">Ganti Tema</button>
+      <div id="musicBtn" class="music-btn playing">🎵</div>
     </div>
   </header>
 
   <main class="container">
     <article class="card" id="content">
-      <h2>Noel Gallagher’s High Flying Birds — Terbang Sendiri dengan Elegan</h2>
+      <h2>Perjalanan Noel Gallagher’s High Flying Birds</h2>
 
-      <p>Setelah meninggalkan Oasis pada tahun 2009, Noel Gallagher memulai babak baru dalam karier musiknya. Dengan tekad kuat dan visi artistik yang tajam, ia membentuk proyek solo bernama *Noel Gallagher’s High Flying Birds* pada tahun 2011. Nama itu terinspirasi dari lagu *High Flying Bird* karya Jefferson Airplane — simbol kebebasan dan eksplorasi baru dalam musiknya.</p>
+      <p>Setelah Oasis bubar pada 2009, Noel Gallagher memutuskan untuk melanjutkan karier musiknya secara mandiri. Pada 2010, ia membentuk proyek musik baru bernama <strong>Noel Gallagher’s High Flying Birds</strong>. Band ini menjadi wadah bagi Noel untuk bereksperimen dengan gaya musik yang lebih luas tanpa terikat oleh format Britpop klasik Oasis.</p>
 
-      <p>Album debut *Noel Gallagher’s High Flying Birds* dirilis pada tahun 2011 dan langsung disambut dengan pujian dari kritikus maupun penggemar lama Oasis. Lagu seperti “The Death of You and Me”, “If I Had a Gun…” dan “AKA… What a Life!” memperlihatkan sisi Noel yang lebih eksperimental namun tetap melodis dan emosional.</p>
+      <p>Album debut bertajuk <strong>Noel Gallagher’s High Flying Birds</strong> (2011) langsung sukses besar, menampilkan lagu-lagu seperti “The Death of You and Me”, “If I Had a Gun”, dan “AKA... What a Life!”. Suara khas Noel dipadukan dengan aransemen brass dan orkestra yang kaya, menciptakan suasana yang segar dan penuh karakter.</p>
 
-      <p>Berbeda dari energi mentah Oasis, proyek ini memperlihatkan sisi lebih halus dan introspektif Noel sebagai penulis lagu. Ia mengeksplorasi berbagai gaya mulai dari pop orkestra, rock atmosferik, hingga unsur elektronik ringan. Produksi musiknya lebih kaya dan berlapis, mencerminkan kedewasaan musikal yang telah ia capai.</p>
+      <p>Melalui proyek ini, Noel menunjukkan kemampuannya sebagai penulis lagu yang matang. Ia menjelajahi tema introspektif seperti perubahan hidup, kehilangan, dan refleksi pribadi. Musiknya terasa lebih berani dan eksperimental dibanding masa Oasis, namun tetap mempertahankan nuansa melodius yang dikenal para penggemarnya.</p>
 
-      <p>Pada tahun 2015, ia merilis album kedua bertajuk *Chasing Yesterday*. Dalam album ini, Noel memperluas batas kreativitasnya dengan nuansa jazz, brass section, dan struktur lagu yang lebih bebas. Lagu “Ballad of the Mighty I” dan “Riverman” menjadi contoh bagaimana ia terus bereksperimen tanpa kehilangan karakter khasnya.</p>
+      <p>Album-album berikutnya seperti <strong>Chasing Yesterday</strong> (2015) dan <strong>Who Built the Moon?</strong> (2017) semakin memperluas batas kreatif Noel. Ia memadukan unsur psychedelic, jazz, dan rock alternatif dengan percaya diri. Noel membuktikan dirinya bukan hanya mantan gitaris Oasis, tapi seorang seniman sejati yang terus berevolusi.</p>
 
-      <p>Noel juga semakin aktif menjadi produser dan aransemen musiknya sendiri. Ia ingin menunjukkan bahwa dirinya bukan hanya penulis lagu Oasis, tapi juga seorang musisi penuh yang mampu mengendalikan seluruh aspek karya musiknya dari awal hingga akhir.</p>
-
-      <p>Tahun 2017 menjadi babak baru lagi dengan rilis album *Who Built the Moon?*, di mana Noel bekerja sama dengan produser David Holmes. Hasilnya adalah suara yang lebih eksperimental dengan sentuhan psychedelic dan elektronik, seperti dalam lagu “Holy Mountain” dan “It’s a Beautiful World”. Album ini membuktikan keberaniannya untuk keluar dari zona nyaman britpop.</p>
-
-      <p>Di tengah perseteruannya yang belum mereda dengan Liam, Noel memilih fokus pada musik dan tur dunia. Ia tampil di festival besar seperti Glastonbury dan Coachella, menunjukkan bahwa dirinya tetap menjadi salah satu figur paling berpengaruh di musik Inggris modern.</p>
-
-      <p>Pada tahun 2023, Noel merilis album *Council Skies*, yang kembali ke akar emosionalnya — penuh nostalgia dan refleksi tentang masa muda di Manchester. Lagu-lagunya menggambarkan suasana hati yang lebih tenang namun tetap kuat, memperlihatkan bahwa semangat kreatif Noel belum padam sedikit pun.</p>
-
-      <p>Noel Gallagher’s High Flying Birds menjadi simbol perjalanan pribadi seorang seniman yang memilih jalannya sendiri. Ia membuktikan bahwa meski terpisah dari Oasis, suaranya tetap menggetarkan dan pesannya tetap relevan bagi generasi baru.</p>
-
-      <p>Dengan gaya khasnya yang cerdas dan penuh integritas, Noel terus menulis, merekam, dan tampil di panggung dunia. Ia mungkin tidak lagi berbagi band dengan saudaranya, tapi lewat High Flying Birds, Noel telah menunjukkan bahwa ia masih bisa “terbang tinggi” dengan caranya sendiri.</p>
+      <p>Hingga kini, Noel Gallagher’s High Flying Birds masih aktif tampil dan merilis karya baru. Musik Noel tetap menjadi simbol kreativitas dan keteguhan dalam industri yang terus berubah. Dengan karier panjang yang gemilang, Noel berhasil menjaga semangat Oasis tetap hidup melalui gaya dan suara khasnya sendiri.</p>
 
       <footer>
-        <p>© 2025 Oasis Fan Project | Designed by Rehan Fauzi Adimulya Putra 9D</p>
-      </footer>
-
-      <footer>
-        <p>Halaman ini adalah bagian dari seri lengkap tentang Oasis — gunakan menu di atas untuk melanjutkan ke bab selanjutnya.</p>
+        <p>© REHAN FAUZI ADIMULYA PUTRA 9D</p>
+        <p>Halaman ini membahas perjalanan Noel Gallagher setelah era Oasis.</p>
       </footer>
     </article>
   </main>
 
-  <audio id="backsound" src="434414d67fa3.mp3" loop preload="metadata"></audio>
+  <audio id="backsound" src="the death of you and me.mp3" loop preload="metadata"></audio>
 
   <script>
+    // Theme toggle + persistence
     (function(){
       const tBtn = document.getElementById('themeToggle');
-      const saved = localStorage.getItem('oasis-theme') || 'dark';
-      if(saved === 'light') document.documentElement.setAttribute('data-theme','light');
+      const saved = localStorage.getItem('oasis-theme') || 'light';
+      if(saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
       else document.documentElement.removeAttribute('data-theme');
 
       tBtn.addEventListener('click', ()=>{
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        if(isLight){
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){
           document.documentElement.removeAttribute('data-theme');
-          localStorage.setItem('oasis-theme','dark');
-        } else {
-          document.documentElement.setAttribute('data-theme','light');
           localStorage.setItem('oasis-theme','light');
+        } else {
+          document.documentElement.setAttribute('data-theme','dark');
+          localStorage.setItem('oasis-theme','dark');
         }
       });
     })();
 
+    // Backsound control
     (function(){
       const audio = document.getElementById('backsound');
       const btn = document.getElementById('musicBtn');
       let playing = true;
-      audio.volume = 0.38;
+      audio.volume = 0.4;
       const tryPlay = () => {
-        audio.play().then(()=>{ playing = true; btn.classList.add('playing') }).catch(()=>{ playing=false; btn.classList.remove('playing') });
+        audio.play().then(()=>{ playing = true; btn.classList.add('playing'); })
+        .catch(()=>{ playing=false; btn.classList.remove('playing'); });
         document.removeEventListener('click', tryPlay);
       };
       document.addEventListener('click', tryPlay);
+
       btn.addEventListener('click', ()=>{
         if(playing){ audio.pause(); btn.classList.remove('playing'); }
         else { audio.play().catch(()=>{}); btn.classList.add('playing'); }

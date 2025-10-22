@@ -3,71 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Reunian 2025 — Oasis Story</title>
+  <title>Reunian Oasis 2025</title>
+  
   <style>
     :root{
-      --overlay-dark: rgba(0,0,0,0.72);
-      --overlay-light: rgba(255,255,255,0.7);
       --text-light: #f3f6fb;
       --text-dark: #111827;
       --accent-light: #00bfff;
       --accent-dark: #0077ff;
       --card-dark: rgba(0,0,0,0.56);
-      --card-light: rgba(255,255,255,0.92);
+      --card-light: rgba(255,255,255,0.9);
+      --bg-img: url('reunian.webp');
     }
+
     [data-theme="light"]{
-      --page-overlay: var(--overlay-light);
       --text: var(--text-dark);
       --accent: var(--accent-dark);
       --card: var(--card-light);
     }
+
     :not([data-theme="light"]){
-      --page-overlay: var(--overlay-dark);
       --text: var(--text-light);
       --accent: var(--accent-light);
       --card: var(--card-dark);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:var(--text); background:var(--page-overlay); transition:background .25s,color .25s}
-
-    body::before{
-      content:"";
-      position:fixed;inset:0;
-      background:url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg') center/cover no-repeat;
-      z-index:-2;
-      opacity:0.95;
-    }
-    body::after{
-      content:"";
-      position:fixed;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.6));
-      z-index:-1;
-      pointer-events:none;
+    html,body{
+      height:100%;margin:0;
+      font-family:Inter,system-ui,Roboto,Arial;
+      color:var(--text);
+      background:var(--bg-img) center/cover no-repeat fixed;
+      transition:color .25s, background .25s;
     }
 
     header{
       display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;
-      background:rgba(0,0,0,0.35);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(0,0,0,0.1);
       position:sticky;top:0;z-index:30;
+      transition:background .35s;
     }
+
+    [data-theme="dark"] header{
+      background:rgba(0,0,0,0.55);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
     .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    .logo{width:56px;height:56px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
     header h1{margin:0;font-size:1.15rem;color:var(--accent)}
     nav{display:flex;gap:10px;flex-wrap:wrap}
-    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95}
-    nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95;transition:background .3s,transform .3s}
+    nav a:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+    [data-theme="light"] nav a:hover{background:rgba(0,0,0,0.1)}
 
     main.container{max-width:980px;margin:28px auto;padding:22px}
-    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.35)}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.25);transition:background .35s,color .35s}
     .card h2{margin-top:0;color:var(--accent);font-size:1.25rem}
     .card p{line-height:1.75;margin:14px 0;text-align:justify}
 
     .controls{display:flex;gap:10px;align-items:center}
-    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
-    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04)}
+    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .3s,opacity .3s}
+    .theme-btn:hover{transform:scale(1.05);opacity:.85}
+    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.3);transition:all .3s}
     .music-btn.playing{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:scale(1.03)}
-    footer{margin-top:18px;color:rgba(255,255,255,0.72);text-align:center;font-size:.92rem}
+
+    footer{margin-top:18px;color:#000;text-align:center;font-size:.92rem}
+    [data-theme="dark"] footer{color:#fff}
 
     @media (max-width:720px){
       header{padding:12px}
@@ -82,23 +85,23 @@
     <div class="brand">
       <div class="logo">OA</div>
       <div>
-        <h1>Oasis Story</h1>
-        <div style="font-size:.88rem;color:rgba(255,255,255,0.78)">Reuni setelah beberapa tahun</div>
+        <h1>Reunian Oasis 2025</h1>
+        <div style="font-size:.88rem;color:#000">Kembalinya Oasis Ke Panggung Dunia</div>
       </div>
     </div>
 
-    <div class="controls" aria-hidden="false">
-      <nav aria-label="Halaman">
+    <div class="controls">
+      <nav>
         <a href="index.html">Beranda</a>
         <a href="pembuatan.html">Pembuatan Band</a>
         <a href="pembubaran.html">Pembubaran</a>
-        <a href="solo-liam.html">Solo Liam</a>
         <a href="noel-hfb.html">Noel HFB</a>
+        <a href="solo-liam.html">Solo Liam</a>
         <a href="reunian-2025.html">Reunian 2025</a>
       </nav>
 
-      <button class="theme-btn" id="themeToggle" title="Ganti tema">Ganti Tema</button>
-      <div id="musicBtn" class="music-btn playing" title="Pause / Play musik">🎵</div>
+      <button class="theme-btn" id="themeToggle">Ganti Tema</button>
+      <div id="musicBtn" class="music-btn playing">🎵</div>
     </div>
   </header>
 
@@ -106,63 +109,81 @@
     <article class="card" id="content">
       <h2>Reunian 2025 — Ketika Dua Saudara Kembali ke Panggung yang Sama</h2>
 
+
       <p>Tahun 2025 menjadi momen yang paling ditunggu oleh jutaan penggemar musik di seluruh dunia. Setelah lebih dari satu dekade perpecahan, Liam dan Noel Gallagher akhirnya mengumumkan bahwa Oasis akan bersatu kembali untuk serangkaian konser reuni eksklusif di Inggris dan beberapa negara lainnya.</p>
+
 
       <p>Pengumuman itu muncul secara mengejutkan lewat unggahan di media sosial Liam, yang hanya menulis, “It’s happening.” Tak lama kemudian, Noel mengonfirmasi dengan postingan yang lebih sederhana: “Oasis. 2025. Let’s do it properly.” Dunia musik langsung geger.</p>
 
+
       <p>Menurut laporan, proses perdamaian antara dua bersaudara itu dimulai pada akhir 2024. Mereka dikabarkan kembali berkomunikasi setelah keduanya menghadiri acara peringatan untuk mendiang ibu mereka, Peggy Gallagher, yang selalu menjadi jembatan di antara keduanya.</p>
+
 
       <p>Dalam beberapa wawancara, Liam mengatakan bahwa ia ingin “menutup kisah Oasis dengan cara yang layak,” bukan dengan perkelahian di belakang panggung seperti yang terjadi tahun 2009. Noel pun mengakui bahwa waktu telah mengubah banyak hal, dan bahwa “orang harus belajar berdamai untuk melangkah maju.”</p>
 
+
       <p>Konser pertama reuni dijadwalkan berlangsung di Knebworth Park — lokasi legendaris tempat Oasis mencatat sejarah pada 1996 di hadapan lebih dari 250 ribu penonton. Tiket konser reuni itu habis dalam waktu kurang dari 10 menit setelah penjualan dibuka.</p>
+
 
       <p>Setlist konser tersebut menjadi nostalgia penuh emosi: “Rock ’n’ Roll Star”, “Morning Glory”, “Champagne Supernova”, hingga “Don’t Look Back in Anger” dinyanyikan bersama puluhan ribu orang dengan air mata dan senyum yang sama besarnya.</p>
 
+
       <p>Visual konser menampilkan harmoni baru antara dua saudara yang dulu berseteru. Liam dengan gaya rock-nya yang tetap liar, Noel dengan ketenangan dan karisma khasnya. Saat mereka berdiri berdampingan membawakan “Live Forever”, seluruh penonton tahu bahwa mereka sedang menyaksikan sejarah.</p>
+
 
       <p>Reunian ini bukan hanya soal nostalgia, tapi juga bentuk kedewasaan dan penghormatan pada warisan musik mereka. Setelah konser Knebworth, Oasis mengumumkan tur dunia mini ke Amerika, Jepang, dan Amerika Latin, yang semuanya terjual habis hanya dalam beberapa jam.</p>
 
+
       <p>Selain konser, keduanya juga merilis single baru berjudul “Brother to Brother”, sebuah lagu dengan lirik yang jujur dan menyentuh — menggambarkan perjalanan dua saudara yang akhirnya menemukan kedamaian setelah badai panjang.</p>
+
 
       <p>Reunian Oasis 2025 menjadi bukti bahwa waktu, cinta, dan musik bisa menyembuhkan luka yang paling dalam. Bagi para penggemar, ini bukan sekadar reuni band, tapi juga simbol harapan bahwa bahkan hubungan yang paling rusak pun bisa diperbaiki dengan hati yang tulus.</p>
 
+
+
+
       <footer>
-        <p>© 2025 Oasis Fan Project | Designed by Rehan Fauzi Adimulya Putra 9D</p>
+        <p>© REHAN FAUZI ADIMULYA PUTRA 9D</p>
+        <p>Halaman ini membahas momen reuni Oasis tahun 2025.</p>
       </footer>
     </article>
   </main>
 
-  <audio id="backsound" src="434414d67fa3.mp3" loop preload="metadata"></audio>
+  <audio id="backsound" src="slide away.mp3" loop preload="metadata"></audio>
 
   <script>
+    // Theme toggle + persistence
     (function(){
       const tBtn = document.getElementById('themeToggle');
-      const saved = localStorage.getItem('oasis-theme') || 'dark';
-      if(saved === 'light') document.documentElement.setAttribute('data-theme','light');
+      const saved = localStorage.getItem('oasis-theme') || 'light';
+      if(saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
       else document.documentElement.removeAttribute('data-theme');
 
       tBtn.addEventListener('click', ()=>{
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        if(isLight){
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){
           document.documentElement.removeAttribute('data-theme');
-          localStorage.setItem('oasis-theme','dark');
-        } else {
-          document.documentElement.setAttribute('data-theme','light');
           localStorage.setItem('oasis-theme','light');
+        } else {
+          document.documentElement.setAttribute('data-theme','dark');
+          localStorage.setItem('oasis-theme','dark');
         }
       });
     })();
 
+    // Backsound control
     (function(){
       const audio = document.getElementById('backsound');
       const btn = document.getElementById('musicBtn');
       let playing = true;
-      audio.volume = 0.38;
+      audio.volume = 0.4;
       const tryPlay = () => {
-        audio.play().then(()=>{ playing = true; btn.classList.add('playing') }).catch(()=>{ playing=false; btn.classList.remove('playing') });
+        audio.play().then(()=>{ playing = true; btn.classList.add('playing'); })
+        .catch(()=>{ playing=false; btn.classList.remove('playing'); });
         document.removeEventListener('click', tryPlay);
       };
       document.addEventListener('click', tryPlay);
+
       btn.addEventListener('click', ()=>{
         if(playing){ audio.pause(); btn.classList.remove('playing'); }
         else { audio.play().catch(()=>{}); btn.classList.add('playing'); }

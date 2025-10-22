@@ -7,73 +7,71 @@
   
   <style>
     :root{
-      --overlay-dark: rgba(0,0,0,0.72);
-      --overlay-light: rgba(255,255,255,0.7);
       --text-light: #f3f6fb;
       --text-dark: #111827;
       --accent-light: #00bfff;
       --accent-dark: #0077ff;
       --card-dark: rgba(0,0,0,0.56);
       --card-light: rgba(255,255,255,0.92);
+      --bg-img: url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg');
     }
+
     [data-theme="light"]{
-      --page-overlay: var(--overlay-light);
       --text: var(--text-dark);
       --accent: var(--accent-dark);
       --card: var(--card-light);
     }
+
     :not([data-theme="light"]){
-      --page-overlay: var(--overlay-dark);
       --text: var(--text-light);
       --accent: var(--accent-light);
       --card: var(--card-dark);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:var(--text); background:var(--page-overlay); transition:background .25s,color .25s}
-
-    /* full-bleed background image */
-    body::before{
-      content:"";
-      position:fixed;inset:0;
-      background: url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg') center/cover no-repeat;
-      z-index:-2;
-      opacity:0.95;
-    }
-    /* subtle darker layer to keep text readable */
-    body::after{
-      content:"";
-      position:fixed;inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.6));
-      z-index:-1;
-      pointer-events:none;
+    html,body{
+      height:100%;margin:0;
+      font-family:Inter,system-ui,Roboto,Arial;
+      color:var(--text);
+      background:var(--bg-img) center/cover no-repeat fixed;
+      transition:color .25s, background .25s;
     }
 
     header{
       display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;
-      background:rgba(0,0,0,0.35);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.5);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(0,0,0,0.1);
       position:sticky;top:0;z-index:30;
+      transition:background .35s;
     }
+
+    [data-theme="dark"] header{
+      background:rgba(0,0,0,0.5);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
     .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    .logo{width:56px;height:56px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
     header h1{margin:0;font-size:1.15rem;color:var(--accent)}
     nav{display:flex;gap:10px;flex-wrap:wrap}
-    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95}
-    nav a:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95;transition:background .3s,transform .3s}
+    nav a:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+    [data-theme="light"] nav a:hover{background:rgba(0,0,0,0.1)}
 
     main.container{max-width:980px;margin:28px auto;padding:22px}
-    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.35)}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.25);transition:background .35s,color .35s}
     .card h2{margin-top:0;color:var(--accent);font-size:1.25rem}
     .card p{line-height:1.75;margin:14px 0;text-align:justify}
 
-    /* controls */
     .controls{display:flex;gap:10px;align-items:center}
-    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
-    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04)}
+    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .3s,opacity .3s}
+    .theme-btn:hover{transform:scale(1.05);opacity:.85}
+    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.3);transition:all .3s}
     .music-btn.playing{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:scale(1.03)}
-    footer{margin-top:18px;color:rgba(255,255,255,0.72);text-align:center;font-size:.92rem}
 
-    /* responsive */
+    footer{margin-top:18px;color:#000;text-align:center;font-size:.92rem}
+    [data-theme="dark"] footer{color:#fff}
+
     @media (max-width:720px){
       header{padding:12px}
       .card{padding:18px}
@@ -88,22 +86,22 @@
       <div class="logo">OA</div>
       <div>
         <h1>Oasis Story</h1>
-        <div style="font-size:.88rem;color:rgba(255,255,255,0.78)">blog yang berisi sejarah band Oasis</div>
+        <div style="font-size:.88rem;color:#000">Blog Yang Berisi Sejarah Band Oasis</div>
       </div>
     </div>
 
-    <div class="controls" aria-hidden="false">
-      <nav aria-label="Halaman">
+    <div class="controls">
+      <nav>
         <a href="index.html">Beranda</a>
         <a href="pembuatan.html">Pembuatan Band</a>
         <a href="pembubaran.html">Pembubaran</a>
-        <a href="solo-liam.html">Solo Liam</a>
         <a href="noel-hfb.html">Noel HFB</a>
+        <a href="solo-liam.html">Solo Liam</a>
         <a href="reunian-2025.html">Reunian 2025</a>
       </nav>
 
-      <button class="theme-btn" id="themeToggle" title="Ganti tema">Ganti Tema</button>
-      <div id="musicBtn" class="music-btn playing" title="Pause / Play musik">🎵</div>
+      <button class="theme-btn" id="themeToggle">Ganti Tema</button>
+      <div id="musicBtn" class="music-btn playing">🎵</div>
     </div>
   </header>
 
@@ -111,94 +109,102 @@
     <article class="card" id="content">
       <h2>Latar Belakang Gallagher Bersaudara — Kisah Lengkap</h2>
 
-      <!-- 20 paragraf mulai di sini -->
-      <p>Noel Thomas David Gallagher dan William John Paul “Liam” Gallagher lahir dan dibesarkan di Burnage, sebuah kawasan pinggiran Manchester. Lahir dari keluarga kelas pekerja berdarah Irlandia, masa kecil mereka dibayangi oleh kondisi ekonomi yang sulit dan rumah tangga yang tidak harmonis. Ayah mereka bekerja sebagai tukang bangunan yang keras dan sering memunculkan ketegangan, sementara ibu, Peggy, menjadi figur pengasuh yang mencoba menstabilkan keluarga. Dari situ, musik menjadi salah satu jalan pelarian yang paling dini bagi kedua bersaudara itu.</p>
+     <p>Noel Thomas David Gallagher dan William John Paul “Liam” Gallagher lahir dan dibesarkan di Burnage, sebuah kawasan pinggiran Manchester. Lahir dari keluarga kelas pekerja berdarah Irlandia, masa kecil mereka dibayangi oleh kondisi ekonomi yang sulit dan rumah tangga yang tidak harmonis. Ayah mereka bekerja sebagai tukang bangunan yang keras dan sering memunculkan ketegangan, sementara ibu, Peggy, menjadi figur pengasuh yang mencoba menstabilkan keluarga. Dari situ, musik menjadi salah satu jalan pelarian yang paling dini bagi kedua bersaudara itu.</p> 
+<p>Saat kecil, Noel menunjukkan kecenderungan untuk menarik diri dan berkutat pada lagu dan melodi. Ia mendengarkan band-band klasik Inggris seperti The Beatles dan The Rolling Stones, serta band lokal era itu, dan mulai meniru akor-akor gitar secara otodidak. Sementara itu, Liam tumbuh dengan energi berbeda: dia suka tampil, berbicara lantang, dan memikat teman-temannya lewat sifatnya yang percaya diri. Perbedaan ini bukan hanya soal kepribadian—itu adalah awal peran yang kelak akan mereka jalani dalam dunia musik.</p>
+ <p>Hidup di Burnage pada 70-an dan 80-an artinya tumbuh dalam lingkungan yang kasar namun penuh karakter. Lingkungan tersebut membentuk cara pandang mereka terhadap kehidupan; ada rasa bangga pada asalnya, rasa ingin sukses, dan juga keterikatan pada komunitas setempat. Noel sering terlihat menyendiri menulis lirik, sementara Liam menghabiskan waktu di luar rumah mencari petualangan dan perhatian. Kedua jalan itu tampak berbeda, namun memiliki inti yang sama: dorongan untuk keluar dari rutinitas dan mencapai sesuatu yang lebih besar.</p>
+<p>Pengaruh musik lokal Manchester juga besar bagi mereka. Kota itu saat itu sedang berkembang sebagai pusat musik alternatif — dari post-punk sampai indie — dan membawa banyak inspirasi baru. Noel mendapatkan pengalaman langsung saat bekerja sebagai teknisi panggung dan roadie untuk band Inspiral Carpets, kesempatan yang memberinya wawasan produksi, tur, dan nilai profesionalisme musikal. Pengalaman ini mengasah kemampuannya menulis lagu dan memikirkan struktur pertunjukan.</p>
+ <p>Liam, berbeda, memperoleh inspirasi dari energi panggung dan budaya anak jalanan. Ia terobsesi dengan cara penyanyi besar berinteraksi dengan penonton, bagaimana sikap bisa membentuk identitas, dan bagaimana kehadiran di panggung bisa mengubah cara orang melihat seorang musisi. Kepribadian publik Liam—kasar, lugas, percaya diri—datang dari akar itu, dan kelak menjadi salah satu ciri khas Oasis yang paling dikenang.</p>
+ <p>Di dalam rumah, ketegangan keluarga memicu konflik tetapi juga menjadi bahan bakar kreatif. Noel belajar menyalurkan rasa tidak aman dan kesepian menjadi lirik-lirik yang jujur; Liam menyalurkan kemarahan dan keinginan di panggung lewat vokal yang mentah dan penuh emosi. Di banyak tulisan mereka nanti, kamu akan menemukan gema-gema masa kecil itu—tentang harapan, kemarahan, cinta, dan keteguhan untuk menaklukkan dunia yang terasa menekan.</p>
+<p>Pendidikan formal tak pernah menjadi fokus utama mereka; pengalaman hidup dan musik menjadi guru yang paling berpengaruh. Noel mengasah kemampuannya lewat praktik menulis lagu dan kerja di balik panggung, sementara Liam belajar mengolah persona publik dan menguji batas melalui penampilan. Keduanya menggabungkan pengalaman ini menjadi visi musik yang kuat ketika akhirnya mereka bekerja bersama.</p>
+ <p>Persahabatan dan persaingan juga tumbuh di antara mereka. Saat remaja, ada saat-saat ketika mereka berdebat sengit—tentang musik, tentang sikap, tentang siapa yang harus memimpin. Persaingan ini, bertolak dari cinta dan ego, memicu intensitas yang justru memperkaya proses kreatif. Ketika Noel menulis lagu, Liam memberi jiwa lewat suara; ketika Liam menuntut keaslian, Noel merapikannya menjadi bentuk yang bisa dinikmati banyak orang.</p>
+ <p>Adapun pengaruh budaya Irlandia di keluarga mereka memberi rasa ketahanan dan humor khas; keluarga besar, kumpul-kumpul, dan cerita-cerita keras mempengaruhi cara mereka menulis dan berpikir. Lagu-lagu Noel sering berisi kesan nostalgia sekaligus ambisi—keinginan untuk melampaui batas, namun tetap menghargai akar. Liam menyanyikan lagu-lagu itu dengan intensitas yang membuat pesan menjadi nyata di telinga pendengar.</p>
+ <p>Sebelum Oasis resmi terbentuk, keduanya sudah melewati fase-fase pembelajaran: Noel menulis dan mengumpulkan materi, Liam mengidentifikasi kebutuhan untuk membawa karya itu ke panggung. Ada momen-momen kecil yang kemudian menjadi besar—sebuah pertunjukan di klub lokal, sebuah lagu yang mendapat sambutan, atau pertemuan dengan musisi lain yang membentuk pola kolaborasi.</p>
+ <p>Kisah keluarga mereka juga diwarnai dengan keputusan besar: pindah rumah, mencari pekerjaan tambahan, dan berusaha bertahan di masa-masa sulit secara finansial. Semua itu menambah kedalaman emosi yang kemudian tersaring ke dalam musik. Lagu-lagu Oasis setelahnya tidak datang dari ruang rekaman semata, melainkan dari pengalaman hidup yang otentik dan terkadang pahit.</p>
+ <p>Pada titik tertentu, Noel mulai menulis lagu-lagu yang terasa siap ke panggung besar—lirik yang langsung, melodi yang mudah diingat, dan struktur yang memungkinkan vokal Liam untuk bersinar. Ia melihat potensi adiknya, namun juga melihat kebutuhan untuk menyalurkan kreativitas itu dalam tim yang terorganisir. Inilah saat kunci yang mengarah pada pembentukan band yang lebih mapan.</p>
+ <p>Liam sendiri tidak langsung menerima peran yang lebih tenang; dia butuh pengakuan dan tempat untuk menunjukkan kemampuannya. Ketika ia bergabung dengan The Rain, semenetak identitas panggungnya mulai terbentuk. Sosok Liam yang penuh percaya diri sudah siap menjadi frontman ketika kesempatan muncul—namun ia juga membutuhkan jiwa penulis lagu yang bisa mengarahkan aransemen. Noel hadir sebagai jawaban itu.</p>
+ <p>Di sisi lain, pengalaman Noel sebagai roadie memberinya pandangan profesional tentang bagaimana band harus bekerja. Ia tahu ritme, jadwal tur, ekspektasi produser, dan tekanan industri. Pengetahuan ini penting ketika Oasis mulai merekam dan menegosiasikan kontrak rekaman; Noel tak hanya penulis lagu, ia juga pengarah yang paham betul mekanika bisnis musik.</p>
+ <p>Hubungan keluarga yang kompleks membuat kisah mereka terasa manusiawi. Mereka sering berdebat sengit, bahkan berkelahi, namun juga saling melindungi di momen-momen penting. Ada konflik ego, tapi ada pula rasa tanggung jawab satu sama lain, terutama ketika karier mulai menanjak—keduanya tahu bahwa keberhasilan satu akan membawa dampak bagi keluarga mereka secara keseluruhan.</p> 
+<p>Ketika akhirnya langkah mereka menuju panggung yang lebih besar menjadi semakin jelas, keduanya menyadari satu hal: keduanya saling membutuhkan. Noel membawa lagu dan visi, Liam membawa suara dan persona. Kedua elemen ini—struktur dan tenaga—adalah fondasi yang membuat Oasis bukan sekadar band, melainkan fenomena budaya.</p> 
+<p>Seiring berjalannya waktu, cerita mereka menjadi lebih dari sekadar kisah personal; ia berubah menjadi cerita generasi—suara anak-anak pinggiran yang ingin lebih. Mereka mewakili kerinduan untuk keluar dari rutinitas, untuk menjadi bagian dari sesuatu yang lebih besar. Lagu-lagu mereka menjadi medium untuk menyuarakan semangat itu.</p> 
+<p>Meski masa kecil penuh tantangan, keduanya berhasil mengubah bekas luka menjadi kreativitas. Noel yang menulis lirik-lirik penuh gambaran, dan Liam yang menyulutnya menjadi api di panggung, membentuk alkimia yang jarang ditemukan di dunia musik. Dari Burnage, mereka membawa cerita yang resonan ke seluruh dunia.</p>
+ <p>Hingga hari ini, latar belakang Gallagher tetap menjadi inti saat orang mendengarkan Oasis: bukan hanya tentang melodi, tetapi juga tentang asal-usul, konflik, dan harapan. Kisah itu memberi bobot emosional pada lagu-lagu mereka dan membuat setiap nada terasa berakar. Dan dari akar itulah, sebuah legenda bermula.</p>
+ <!-- 20 paragraf selesai -->
 
-      <p>Saat kecil, Noel menunjukkan kecenderungan untuk menarik diri dan berkutat pada lagu dan melodi. Ia mendengarkan band-band klasik Inggris seperti The Beatles dan The Rolling Stones, serta band lokal era itu, dan mulai meniru akor-akor gitar secara otodidak. Sementara itu, Liam tumbuh dengan energi berbeda: dia suka tampil, berbicara lantang, dan memikat teman-temannya lewat sifatnya yang percaya diri. Perbedaan ini bukan hanya soal kepribadian—itu adalah awal peran yang kelak akan mereka jalani dalam dunia musik.</p>
-
-      <p>Hidup di Burnage pada 70-an dan 80-an artinya tumbuh dalam lingkungan yang kasar namun penuh karakter. Lingkungan tersebut membentuk cara pandang mereka terhadap kehidupan; ada rasa bangga pada asalnya, rasa ingin sukses, dan juga keterikatan pada komunitas setempat. Noel sering terlihat menyendiri menulis lirik, sementara Liam menghabiskan waktu di luar rumah mencari petualangan dan perhatian. Kedua jalan itu tampak berbeda, namun memiliki inti yang sama: dorongan untuk keluar dari rutinitas dan mencapai sesuatu yang lebih besar.</p>
-
-      <p>Pengaruh musik lokal Manchester juga besar bagi mereka. Kota itu saat itu sedang berkembang sebagai pusat musik alternatif — dari post-punk sampai indie — dan membawa banyak inspirasi baru. Noel mendapatkan pengalaman langsung saat bekerja sebagai teknisi panggung dan roadie untuk band Inspiral Carpets, kesempatan yang memberinya wawasan produksi, tur, dan nilai profesionalisme musikal. Pengalaman ini mengasah kemampuannya menulis lagu dan memikirkan struktur pertunjukan.</p>
-
-      <p>Liam, berbeda, memperoleh inspirasi dari energi panggung dan budaya anak jalanan. Ia terobsesi dengan cara penyanyi besar berinteraksi dengan penonton, bagaimana sikap bisa membentuk identitas, dan bagaimana kehadiran di panggung bisa mengubah cara orang melihat seorang musisi. Kepribadian publik Liam—kasar, lugas, percaya diri—datang dari akar itu, dan kelak menjadi salah satu ciri khas Oasis yang paling dikenang.</p>
-
-      <p>Di dalam rumah, ketegangan keluarga memicu konflik tetapi juga menjadi bahan bakar kreatif. Noel belajar menyalurkan rasa tidak aman dan kesepian menjadi lirik-lirik yang jujur; Liam menyalurkan kemarahan dan keinginan di panggung lewat vokal yang mentah dan penuh emosi. Di banyak tulisan mereka nanti, kamu akan menemukan gema-gema masa kecil itu—tentang harapan, kemarahan, cinta, dan keteguhan untuk menaklukkan dunia yang terasa menekan.</p>
-
-      <p>Pendidikan formal tak pernah menjadi fokus utama mereka; pengalaman hidup dan musik menjadi guru yang paling berpengaruh. Noel mengasah kemampuannya lewat praktik menulis lagu dan kerja di balik panggung, sementara Liam belajar mengolah persona publik dan menguji batas melalui penampilan. Keduanya menggabungkan pengalaman ini menjadi visi musik yang kuat ketika akhirnya mereka bekerja bersama.</p>
-
-      <p>Persahabatan dan persaingan juga tumbuh di antara mereka. Saat remaja, ada saat-saat ketika mereka berdebat sengit—tentang musik, tentang sikap, tentang siapa yang harus memimpin. Persaingan ini, bertolak dari cinta dan ego, memicu intensitas yang justru memperkaya proses kreatif. Ketika Noel menulis lagu, Liam memberi jiwa lewat suara; ketika Liam menuntut keaslian, Noel merapikannya menjadi bentuk yang bisa dinikmati banyak orang.</p>
-
-      <p>Adapun pengaruh budaya Irlandia di keluarga mereka memberi rasa ketahanan dan humor khas; keluarga besar, kumpul-kumpul, dan cerita-cerita keras memengaruhi cara mereka menulis dan berpikir. Lagu-lagu Noel sering berisi kesan nostalgia sekaligus ambisi—keinginan untuk melampaui batas, namun tetap menghargai akar. Liam menyanyikan lagu-lagu itu dengan intensitas yang membuat pesan menjadi nyata di telinga pendengar.</p>
-
-      <p>Sebelum Oasis resmi terbentuk, keduanya sudah melewati fase-fase pembelajaran: Noel menulis dan mengumpulkan materi, Liam mengidentifikasi kebutuhan untuk membawa karya itu ke panggung. Ada momen-momen kecil yang kemudian menjadi besar—sebuah pertunjukan di klub lokal, sebuah lagu yang mendapat sambutan, atau pertemuan dengan musisi lain yang membentuk pola kolaborasi.</p>
-
-      <p>Kisah keluarga mereka juga diwarnai dengan keputusan besar: pindah rumah, mencari pekerjaan tambahan, dan berusaha bertahan di masa-masa sulit secara finansial. Semua itu menambah kedalaman emosi yang kemudian tersaring ke dalam musik. Lagu-lagu Oasis setelahnya tidak datang dari ruang rekaman semata, melainkan dari pengalaman hidup yang otentik dan terkadang pahit.</p>
-
-      <p>Pada titik tertentu, Noel mulai menulis lagu-lagu yang terasa siap ke panggung besar—lirik yang langsung, melodi yang mudah diingat, dan struktur yang memungkinkan vokal Liam untuk bersinar. Ia melihat potensi adiknya, namun juga melihat kebutuhan untuk menyalurkan kreativitas itu dalam tim yang terorganisir. Inilah saat kunci yang mengarah pada pembentukan band yang lebih mapan.</p>
-
-      <p>Liam sendiri tidak langsung menerima peran yang lebih tenang; dia butuh pengakuan dan tempat untuk menunjukkan kemampuannya. Ketika ia bergabung dengan The Rain, semenetak identitas panggungnya mulai terbentuk. Sosok Liam yang penuh percaya diri sudah siap menjadi frontman ketika kesempatan muncul—namun ia juga membutuhkan jiwa penulis lagu yang bisa mengarahkan aransemen. Noel hadir sebagai jawaban itu.</p>
-
-      <p>Di sisi lain, pengalaman Noel sebagai roadie memberinya pandangan profesional tentang bagaimana band harus bekerja. Ia tahu ritme, jadwal tur, ekspektasi produser, dan tekanan industri. Pengetahuan ini penting ketika Oasis mulai merekam dan menegosiasikan kontrak rekaman; Noel tak hanya penulis lagu, ia juga pengarah yang paham betul mekanika bisnis musik.</p>
-
-      <p>Hubungan keluarga yang kompleks membuat kisah mereka terasa manusiawi. Mereka sering berdebat sengit, bahkan berkelahi, namun juga saling melindungi di momen-momen penting. Ada konflik ego, tapi ada pula rasa tanggung jawab satu sama lain, terutama ketika karier mulai menanjak—keduanya tahu bahwa keberhasilan satu akan membawa dampak bagi keluarga mereka secara keseluruhan.</p>
-
-      <p>Ketika akhirnya langkah mereka menuju panggung yang lebih besar menjadi semakin jelas, keduanya menyadari satu hal: keduanya saling membutuhkan. Noel membawa lagu dan visi, Liam membawa suara dan persona. Kedua elemen ini—struktur dan tenaga—adalah fondasi yang membuat Oasis bukan sekadar band, melainkan fenomena budaya.</p>
-
-      <p>Seiring berjalannya waktu, cerita mereka menjadi lebih dari sekadar kisah personal; ia berubah menjadi cerita generasi—suara anak-anak pinggiran yang ingin lebih. Mereka mewakili kerinduan untuk keluar dari rutinitas, untuk menjadi bagian dari sesuatu yang lebih besar. Lagu-lagu mereka menjadi medium untuk menyuarakan semangat itu.</p>
-
-      <p>Meski masa kecil penuh tantangan, keduanya berhasil mengubah bekas luka menjadi kreativitas. Noel yang menulis lirik-lirik penuh gambaran, dan Liam yang menyulutnya menjadi api di panggung, membentuk alkimia yang jarang ditemukan di dunia musik. Dari Burnage, mereka membawa cerita yang resonan ke seluruh dunia.</p>
-
-      <p>Hingga hari ini, latar belakang Gallagher tetap menjadi inti saat orang mendengarkan Oasis: bukan hanya tentang melodi, tetapi juga tentang asal-usul, konflik, dan harapan. Kisah itu memberi bobot emosional pada lagu-lagu mereka dan membuat setiap nada terasa berakar. Dan dari akar itulah, sebuah legenda bermula.</p>
-      <!-- 20 paragraf selesai -->
-         <footer>
-    <p>© 2025 Oasis Fan Project | Designed by Rehan Fauzi Adimulya Putra 9D</p>
-
+      
       <footer>
-        <p>Halaman ini adalah bagian dari seri lengkap tentang Oasis — gunakan menu di atas untuk melanjutkan ke bab selanjutnya.</p>
+        <p>© REHAN FAUZI ADIMULYA PUTRA 9D</p>
+        <p>Halaman ini bagian dari seri lengkap tentang Oasis — gunakan menu di atas untuk lanjut ke bab selanjutnya.</p>
       </footer>
     </article>
   </main>
 
-  <audio id="backsound" src="434414d67fa3.mp3" loop preload="metadata"></audio>
+  <!-- dua lagu backsound -->
+  <audio id="song1" src="dont look back in anger.mp3" preload="metadata"></audio>
+  <audio id="song2" src="cast no shadow.mp3" preload="metadata"></audio>
 
   <script>
-    // Theme toggle + persistence
+    // === Tema Gelap / Terang ===
     (function(){
       const tBtn = document.getElementById('themeToggle');
-      const saved = localStorage.getItem('oasis-theme') || 'dark';
-      if(saved === 'light') document.documentElement.setAttribute('data-theme','light');
+      const saved = localStorage.getItem('oasis-theme') || 'light';
+      if(saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
       else document.documentElement.removeAttribute('data-theme');
 
       tBtn.addEventListener('click', ()=>{
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        if(isLight){
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){
           document.documentElement.removeAttribute('data-theme');
-          localStorage.setItem('oasis-theme','dark');
-        } else {
-          document.documentElement.setAttribute('data-theme','light');
           localStorage.setItem('oasis-theme','light');
+        } else {
+          document.documentElement.setAttribute('data-theme','dark');
+          localStorage.setItem('oasis-theme','dark');
         }
       });
     })();
 
-    // Backsound control: play after first user interaction fallback + play/pause button
+    // === Backsound Otomatis Ganti Lagu ===
     (function(){
-      const audio = document.getElementById('backsound');
+      const songs = [
+        document.getElementById('song1'),
+        document.getElementById('song2')
+      ];
       const btn = document.getElementById('musicBtn');
+      let current = 0;
       let playing = true;
 
-      // try autoplay (may be blocked)
-      audio.volume = 0.38;
-      const tryPlay = () => {
-        audio.play().then(()=>{ playing = true; btn.classList.add('playing') }).catch(()=>{ playing=false; btn.classList.remove('playing') });
-        document.removeEventListener('click', tryPlay);
-      };
-      document.addEventListener('click', tryPlay);
+      songs.forEach(s => s.volume = 0.38);
 
-      // toggle
+      function playCurrent(){
+        songs[current].play().catch(()=>{});
+        btn.classList.add('playing');
+      }
+
+      // ganti ke lagu berikutnya setelah satu selesai
+      songs.forEach((s,i)=>{
+        s.addEventListener('ended', ()=>{
+          s.pause();
+          s.currentTime = 0;
+          current = (i+1) % songs.length;
+          playCurrent();
+        });
+      });
+
+      // auto-play setelah klik pertama di halaman
+      const startPlay = ()=>{
+        playCurrent();
+        document.removeEventListener('click', startPlay);
+      };
+      document.addEventListener('click', startPlay);
+
+      // tombol play/pause manual
       btn.addEventListener('click', ()=>{
-        if(playing){ audio.pause(); btn.classList.remove('playing'); }
-        else { audio.play().catch(()=>{}); btn.classList.add('playing'); }
+        if(playing){
+          songs[current].pause();
+          btn.classList.remove('playing');
+        } else {
+          songs[current].play().catch(()=>{});
+          btn.classList.add('playing');
+        }
         playing = !playing;
       });
     })();
