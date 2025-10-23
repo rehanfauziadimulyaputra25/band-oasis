@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oasis Story</title>
+  
+  <style>
+    :root{
+      --text-light: #f3f6fb;
+      --text-dark: #111827;
+      --accent-light: #00bfff;
+      --accent-dark: #0077ff;
+      --card-dark: rgba(0,0,0,0.56);
+      --card-light: rgba(255,255,255,0.92);
+      --bg-img: url('WhatsApp-Image-2023-10-09-at-102529-AM-964806208.jpg');
+    }
+
+    [data-theme="light"]{
+      --text: var(--text-dark);
+      --accent: var(--accent-dark);
+      --card: var(--card-light);
+    }
+
+    :not([data-theme="light"]){
+      --text: var(--text-light);
+      --accent: var(--accent-light);
+      --card: var(--card-dark);
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;margin:0;
+      font-family:Inter,system-ui,Roboto,Arial;
+      color:var(--text);
+      background:var(--bg-img) center/cover no-repeat fixed;
+      transition:color .25s, background .25s;
+    }
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;
+      background:rgba(255,255,255,0.5);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(0,0,0,0.1);
+      position:sticky;top:0;z-index:30;
+      transition:background .35s;
+    }
+
+    [data-theme="dark"] header{
+      background:rgba(0,0,0,0.5);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    header h1{margin:0;font-size:1.15rem;color:var(--accent)}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;opacity:.95;transition:background .3s,transform .3s}
+    nav a:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+    [data-theme="light"] nav a:hover{background:rgba(0,0,0,0.1)}
+
+    main.container{max-width:980px;margin:28px auto;padding:22px}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.25);transition:background .35s,color .35s}
+    .card h2{margin-top:0;color:var(--accent);font-size:1.25rem}
+    .card p{line-height:1.75;margin:14px 0;text-align:justify}
+
+    .controls{display:flex;gap:10px;align-items:center}
+    .theme-btn{background:linear-gradient(90deg,var(--accent),#006bb3);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .3s,opacity .3s}
+    .theme-btn:hover{transform:scale(1.05);opacity:.85}
+    .music-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;background:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.3);transition:all .3s}
+    .music-btn.playing{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:scale(1.03)}
+
+    footer{margin-top:18px;color:#000;text-align:center;font-size:.92rem}
+    [data-theme="dark"] footer{color:#fff}
+
+    @media (max-width:720px){
+      header{padding:12px}
+      .card{padding:18px}
+    }
+
+    audio{display:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">OA</div>
+      <div>
+        <h1>Oasis Story</h1>
+        <div style="font-size:.88rem;color:#000">Blog Yang Berisi Sejarah and Oasis</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="pembuatan.html">Pembuatan Band</a>
+        <a href="album-band.html">Solo Liam</a>
+        <a href="pembubaran.html">Pembubaran</a>
+        <a href="noel-hfb.html">Noel HFB</a>
+        <a href="solo-liam.html">Solo Liam</a>
+        <a href="reunian-2025.html">Reunian 2025</a>
+      </nav>
+
+      <button class="theme-btn" id="themeToggle">Ganti Tema</button>
+      <div id="musicBtn" class="music-btn playing">🎵</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="card" id="content">
+      <h2>Album Band Ini</h2>
+
+     <p><strong>1. Definitely Maybe (1994)</strong></p>
+<ul>
+  <li>Rock 'n' Roll Star</li>
+  <li>Shakermaker</li>
+  <li>Live Forever</li>
+  <li>Up in the Sky</li>
+  <li>Columbia</li>
+  <li>Supersonic</li>
+  <li>Bring It on Down</li>
+  <li>Cigarettes & Alcohol</li>
+  <li>Digsy's Dinner</li>
+  <li>Slide Away</li>
+  <li>Married with Children</li>
+</ul>
+
+<p><strong>2. (What's the Story) Morning Glory? (1995)</strong></p>
+<ul>
+  <li>Hello</li>
+  <li>Roll With It</li>
+  <li>Wonderwall</li>
+  <li>Don't Look Back in Anger</li>
+  <li>Hey Now!</li>
+  <li>[Untitled] (The Swamp Song - Part One)</li>
+  <li>Some Might Say</li>
+  <li>Cast No Shadow</li>
+  <li>She's Electric</li>
+  <li>Morning Glory</li>
+  <li>[Untitled] (The Swamp Song - Part Two)</li>
+  <li>Champagne Supernova</li>
+</ul>
+
+<p><strong>3. Be Here Now (1997)</strong></p>
+<ul>
+  <li>D'You Know What I Mean?</li>
+  <li>My Big Mouth</li>
+  <li>Magic Pie</li>
+  <li>Stand By Me</li>
+  <li>I Hope, I Think, I Know</li>
+  <li>The Girl in the Dirty Shirt</li>
+  <li>Fade In-Out</li>
+  <li>Don't Go Away</li>
+  <li>Be Here Now</li>
+  <li>All Around the World</li>
+  <li>It's Gettin' Better (Man!!)</li>
+  <li>All Around the World (Reprise)</li>
+</ul>
+
+<p><strong>4. Standing on the Shoulder of Giants (2000)</strong></p>
+<ul>
+  <li>F**kin' in the Bushes</li>
+  <li>Go Let It Out</li>
+  <li>Who Feels Love?</li>
+  <li>Put Yer Money Where Yer Mouth Is</li>
+  <li>Little James</li>
+  <li>Gas Panic!</li>
+  <li>Where Did It All Go Wrong?</li>
+  <li>Sunday Morning Call</li>
+  <li>I Can See a Liar</li>
+  <li>Roll It Over</li>
+</ul>
+
+<p><strong>5. Heathen Chemistry (2002)</strong></p>
+<ul>
+  <li>The Hindu Times</li>
+  <li>Force of Nature</li>
+  <li>Hung in a Bad Place</li>
+  <li>Stop Crying Your Heart Out</li>
+  <li>Songbird</li>
+  <li>Little by Little</li>
+  <li>A Quick Peep (Instrumental)</li>
+  <li>(Probably) All in the Mind</li>
+  <li>She Is Love</li>
+  <li>Born on a Different Cloud</li>
+  <li>Better Man</li>
+</ul>
+
+<p><strong>6. Don't Believe the Truth (2005)</strong></p>
+<ul>
+  <li>Turn Up the Sun</li>
+  <li>Mucky Fingers</li>
+  <li>Lyla</li>
+  <li>Love Like a Bomb</li>
+  <li>The Importance of Being Idle</li>
+  <li>The Meaning of Soul</li>
+  <li>Guess God Thinks I'm Abel</li>
+  <li>Part of the Queue</li>
+  <li>Keep the Dream Alive</li>
+  <li>A Bell Will Ring</li>
+  <li>Let There Be Love</li>
+</ul>
+
+<p><strong>7. Dig Out Your Soul (2008)</strong></p>
+<ul>
+  <li>Bag It Up</li>
+  <li>The Turning</li>
+  <li>Waiting for the Rapture</li>
+  <li>The Shock of the Lightning</li>
+  <li>I'm Outta Time</li>
+  <li>(Get Off Your) High Horse Lady</li>
+  <li>Falling Down</li>
+  <li>To Be Where There's Life</li>
+  <li>Ain't Got Nothin'</li>
+  <li>The Nature of Reality</li>
+  <li>Soldier On</li>
+</ul>
+
+      
+      <footer>
+        <p>© REHAN FAUZI ADIMULYA PUTRA 9D</p>
+        <p>Halaman ini bagian dari seri lengkap tentang Oasis — gunakan menu di atas untuk lanjut ke bab selanjutnya.</p>
+      </footer>
+    </article>
+  </main>
+
+    <audio id="backsound" src="listen up.mp3" loop preload="metadata"></audio>
+
+  <script>
+    // Theme toggle + persistence
+    (function(){
+      const tBtn = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('oasis-theme') || 'light';
+      if(saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
+      else document.documentElement.removeAttribute('data-theme');
+
+      tBtn.addEventListener('click', ()=>{
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('oasis-theme','light');
+        } else {
+          document.documentElement.setAttribute('data-theme','dark');
+          localStorage.setItem('oasis-theme','dark');
+        }
+      });
+    })();
+
+    // Backsound control (1 lagu)
+    (function(){
+      const audio = document.getElementById('backsound');
+      const btn = document.getElementById('musicBtn');
+      let playing = false;
+      audio.volume = 0.4;
+
+      const tryPlay = () => {
+        audio.play().then(()=>{
+          playing = true;
+          btn.classList.add('playing');
+        }).catch(()=>{
+          playing = false;
+          btn.classList.remove('playing');
+        });
+        document.removeEventListener('click', tryPlay);
+      };
+      document.addEventListener('click', tryPlay);
+
+      btn.addEventListener('click', ()=>{
+        if(playing){
+          audio.pause();
+          btn.classList.remove('playing');
+        } else {
+          audio.play().catch(()=>{});
+          btn.classList.add('playing');
+        }
+        playing = !playing;
+      });
+    })();
+  </script>
+</body>
+</html>
